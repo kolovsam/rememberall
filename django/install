@@ -1,0 +1,12 @@
+
+# 1 Install Python
+
+# 2 Install MySQL-python (MySQLdb) package
+
+# 3 Install Pip
+python get-pip.py
+# OR
+sudo apt-get install python-pip
+
+# 4 Install Django
+sudo pip install django
