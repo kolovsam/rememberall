@@ -1,0 +1,44 @@
+{% comment %}
+This can by included in another template. Produces a simple table from
+queryset 'object_list' and header 'header'. Includes last column of links
+separated by |. You can find the jquery for these links in links.js. Also
+uses twitter bootstrap to style the table.
+{% endcomment %}
+
+<h4>{{ table_title }}</h4>
+
+<table class="table table-bordered table-striped table-hover">
+	{% for item in object_list %}
+    	{% if forloop.first %}
+			<tr>
+			<th></th>
+			{% for item in header %}
+				<th>{{ item }}</th>
+			{% endfor %}
+			<th></th>
+			</tr>
+			<tbody>
+		{% endif %}
+		{% for field in item %}
+			{% if forloop.first %}
+				<tr id="{{ field }}">
+				<td><input type="checkbox" id="{{ field }}"></td>
+			{% else %}
+				<td>{{ field }}</td>
+			{% endif %}
+		{% endfor %}
+				<td>
+				{% for link in links %}
+					<a class="action-link" id="{{ link }}">{{ link }}</a>
+					{% if not forloop.last %}
+						|
+					{% endif %}
+				{% endfor %}
+				</td>
+		</tr>
+	{% empty %}
+		<p>Keep walking. Nothing to see here.</p>
+	{% endfor %}
+	</tbody>
+</table>
+						   
