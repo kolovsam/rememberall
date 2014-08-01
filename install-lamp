@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Ref: https://www.linux.com/learn/tutorials/288158-easy-lamp-server-installation
+# For installing LAMP server on RHEL, CentOS: http://www.unixmen.com/install-lamp-server-in-centos-6-4-rhel-6-4/
+
+# Apache
+sudo apt-get install apache2
+sudo /etc/init.d/apache2 start
+# or apachectl start
+
+read -p "Open a browser and point it to your the IP address of the server. Once you get the famous 'It works!' page. Enter y to continue: " -n 1
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+	echo
+	exit 1
+else
+	echo
+fi
+
+# PHP
+sudo apt-get install php5 libapache2-mod-php5
+sudo /etc/init.d/apache2 restart
+# or apachectl restart
+
+read -p "Open another terminal window and create a file called test.php in /var/www. Then opena browser to http://address_of_server/test.php. You should see the 'Test PHP Page'. Enter y to continue: " -n 1
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+	echo
+	exit 1
+else
+	echo
+fi
+
+# MySQL
+sudo apt-get install mysql-server
+
+echo "To finish:"
+echo "1. Log into MySQl with the command mysql -u root -p"
+echo "2. Hit enter when prompted for a password"
+echo "3. Set password using command SET PASSWORD FOR 'root'@'localhost'=PASSWORD('YOURPASSWORD');"
+echo "4. Quit MySQL by using the command exit or quit"
+echo "5. Start the MySQL server with the command sudo /etc/init.d/mysql start
+
+
+
